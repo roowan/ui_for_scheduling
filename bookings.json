@@ -1,0 +1,30 @@
+[
+  {
+    "id": "1421331_Tue_12:45\u201313:00_Doc_1",
+    "mrdno": "1421331",
+    "gender": "Male",
+    "age_cat": "46-60",
+    "specialty": "Retina",
+    "visit_cat": "MRE",
+    "flow": "Dilated",
+    "doctor": "Doc 1",
+    "day": "Tue",
+    "slot": "12:45\u201313:00",
+    "pred_min": 69.8,
+    "booked_at": "2026-06-23T18:18:31.066363"
+  },
+  {
+    "id": "1268286_Tue_09:00\u201309:15_Doc_2",
+    "mrdno": "1268286",
+    "gender": "Male",
+    "age_cat": "31-45",
+    "specialty": "General",
+    "visit_cat": "MRE",
+    "flow": "Non-Dilated",
+    "doctor": "Doc 2",
+    "day": "Tue",
+    "slot": "09:00\u201309:15",
+    "pred_min": 37.0,
+    "booked_at": "2026-06-23T18:21:42.740009"
+  }
+]
