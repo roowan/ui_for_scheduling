@@ -1,0 +1,608 @@
+2026-06-29 01:21:40  INFO      ================================================================
+2026-06-29 01:21:40  INFO      STRESS TEST v2  START  2026-06-29T01:21:40.228391
+2026-06-29 01:21:40  INFO      ================================================================
+2026-06-29 01:21:40  INFO      Step 1: Building patient_lookup.csv
+2026-06-29 01:22:15  INFO        134659 unique patients  (35.4s)
+2026-06-29 01:22:15  INFO        Flow consult columns: ['avg_consult_dilated', 'avg_consult_nondilated', 'avg_consult_procedure']
+2026-06-29 01:22:15  INFO      Step 2: Loading workup model
+2026-06-29 01:22:15  INFO        OK
+2026-06-29 01:22:15  INFO      Step 3: Sampling real patients — target 350-patient day
+2026-06-29 01:22:21  INFO        EHR pool: 515 patients
+2026-06-29 01:22:21  INFO      Step 4: Manual walk-ins
+2026-06-29 01:22:21  INFO        Manual walk-ins: 20
+2026-06-29 01:22:21  INFO        Total pool: 535
+2026-06-29 01:22:21  INFO      Step 5: Booking on Mon
+2026-06-29 01:22:21  INFO      BOOKED  1549739       Glaucoma                        REG   Non-Dilated     09:00–09:05  (5min)  sc=0.000  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  WALK-005      Pediatric and Low vision        REG   Non-Dilated     10:00–10:04  (4min)  sc=0.000  [MAN]
+2026-06-29 01:22:21  INFO      BOOKED  1490894       General                         SRE   Dilated         08:00–08:44  (44min)  sc=0.000  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1311253       General                         SRE   Procedure       09:00–09:15  (15min)  sc=0.001  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1262822       Pediatric and Low vision        MRE   Procedure       09:00–09:15  (15min)  sc=0.007  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1514697       Cornea                          MRE   Non-Dilated     11:00–11:09  (9min)  sc=0.000  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1482946       Cornea                          REG   Non-Dilated     14:30–14:34  (4min)  sc=0.000  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1453057       Pediatric and Low vision        MRE   Non-Dilated     12:00–12:04  (4min)  sc=0.000  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1536089       Cornea                          REG   Non-Dilated     10:00–10:12  (12min)  sc=0.001  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1456722       Cornea                          MRE   Procedure       09:00–09:15  (15min)  sc=0.013  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1473213       Glaucoma                        REG   Dilated         10:00–10:39  (39min)  sc=0.004  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1457669       General                         REG   Non-Dilated     15:30–15:35  (5min)  sc=0.000  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1151077       Retina                          MRE   Non-Dilated     12:00–12:06  (6min)  sc=0.001  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1430390       Pediatric and Low vision        MRE   Procedure       08:00–08:15  (15min)  sc=0.020  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1435229       General                         REG   Dilated         09:00–09:35  (35min)  sc=0.015  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1416537       Glaucoma                        MRE   Non-Dilated     14:30–14:37  (7min)  sc=0.001  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1518464       General                         REG   Non-Dilated     14:30–14:45  (15min)  sc=0.003  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1355158       Glaucoma                        MRE   Procedure       09:05–09:20  (15min)  sc=0.023  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1491762       Glaucoma                        REG   Non-Dilated     15:30–15:36  (6min)  sc=0.016  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1465760       Retina                          MRE   Dilated         11:00–11:29  (29min)  sc=0.003  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1540555       Retina                          MRE   Procedure       08:00–08:15  (15min)  sc=0.023  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1070974       Glaucoma                        MRE   Procedure       08:00–08:15  (15min)  sc=0.047  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1526676       General                         SRE   Non-Dilated     12:00–12:06  (6min)  sc=0.013  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1276526       Cornea                          MRE   Non-Dilated     12:00–12:01  (1min)  sc=0.010  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1522312       General                         SRE   Non-Dilated     12:10–12:14  (4min)  sc=0.018  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1482483       Retina                          MRE   Non-Dilated     15:30–15:35  (5min)  sc=0.003  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1455634       Cornea                          MRE   Non-Dilated     12:05–12:07  (2min)  sc=0.011  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1479555       Cornea                          REG   Dilated         10:15–10:49  (34min)  sc=0.023  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1395231       Glaucoma                        MRE   Non-Dilated     12:00–12:03  (3min)  sc=0.015  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1498460       General                         SRE   Non-Dilated     12:15–12:17  (2min)  sc=0.022  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  P596325       Pediatric and Low vision        MRE   Non-Dilated     12:05–12:19  (14min)  sc=0.015  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  WALK-007      Glaucoma                        REG   Dilated         09:00–09:38  (38min)  sc=0.053  [MAN]
+2026-06-29 01:22:21  INFO      BOOKED  1494243       General                         MRE   Procedure       08:00–08:15  (15min)  sc=0.051  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1175666       Pediatric and Low vision        MRE   Procedure       08:15–08:30  (15min)  sc=0.051  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  P859046       Cornea                          MRE   Procedure       08:00–08:15  (15min)  sc=0.050  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1207884       General                         MRE   Procedure       08:00–08:15  (15min)  sc=0.068  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1454434       Pediatric and Low vision        MRE   Non-Dilated     15:30–15:35  (5min)  sc=0.029  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1466943       Cornea                          REG   Non-Dilated     14:35–14:38  (3min)  sc=0.023  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1525404       Cornea                          MRE   Non-Dilated     15:30–15:37  (7min)  sc=0.025  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1535864       Cornea                          REG   Dilated         10:00–10:40  (40min)  sc=0.046  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  WALK-011      Retina                          REG   Non-Dilated     14:30–14:34  (4min)  sc=0.007  [MAN]
+2026-06-29 01:22:21  INFO      BOOKED  1467555       Cornea                          REG   Non-Dilated     14:40–14:45  (5min)  sc=0.037  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1541081       Retina                          MRE   Non-Dilated     12:00–12:12  (12min)  sc=0.008  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1479359       Retina                          REG   Non-Dilated     14:35–14:38  (3min)  sc=0.016  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1214796       General                         MRE   Non-Dilated     12:00–12:07  (7min)  sc=0.032  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1405615       General                         MRE   Non-Dilated     12:20–12:29  (9min)  sc=0.040  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1513326       Pediatric and Low vision        REG   Non-Dilated     15:35–15:50  (15min)  sc=0.035  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1301101       Cornea                          SRE   Procedure       09:00–09:15  (15min)  sc=0.073  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1264130       Retina                          MRE   Dilated         11:00–11:28  (28min)  sc=0.021  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1539968       Pediatric and Low vision        REG   Non-Dilated     15:50–15:52  (2min)  sc=0.046  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1334258       Glaucoma                        MRE   Non-Dilated     12:05–12:07  (2min)  sc=0.026  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1014510       General                         MRE   Non-Dilated     12:10–12:14  (4min)  sc=0.046  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1477365       Retina                          MRE   Non-Dilated     14:40–14:42  (2min)  sc=0.022  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1513222       Cornea                          REG   Non-Dilated     14:30–14:33  (3min)  sc=0.052  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1014718       Glaucoma                        MRE   Non-Dilated     14:40–14:44  (4min)  sc=0.032  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1026605       General                         MRE   Procedure       08:15–08:30  (15min)  sc=0.082  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1435269       Pediatric and Low vision        SRE   Non-Dilated     15:55–15:57  (2min)  sc=0.048  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1515068       General                         REG   Non-Dilated     14:45–14:49  (4min)  sc=0.056  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1482413       Glaucoma                        MRE   Dilated         11:00–11:38  (38min)  sc=0.059  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1530546       Retina                          MRE   Non-Dilated     15:30–15:36  (6min)  sc=0.023  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1404518       Glaucoma                        MRE   Procedure       09:40–09:55  (15min)  sc=0.085  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1517680       Glaucoma                        REG   Non-Dilated     14:45–14:46  (1min)  sc=0.040  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1417813       General                         MRE   Non-Dilated     12:30–12:36  (6min)  sc=0.058  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1532389       Cornea                          MRE   Non-Dilated     14:35–14:37  (2min)  sc=0.057  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1481313       Glaucoma                        SRE   Dilated         11:00–11:28  (28min)  sc=0.087  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1555279       Cornea                          MRE   Procedure       08:00–08:15  (15min)  sc=0.092  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1506518       Cornea                          SRE   Procedure       09:15–09:30  (15min)  sc=0.093  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1557062       General                         REG   Dilated         10:00–10:41  (41min)  sc=0.075  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1444607       Retina                          REG   Non-Dilated     15:40–15:46  (6min)  sc=0.029  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1462953       Cornea                          REG   Dilated         14:45–15:30  (45min)  sc=0.104  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1463522       Pediatric and Low vision        MRE   Non-Dilated     16:00–16:05  (5min)  sc=0.052  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1440433       Pediatric and Low vision        REG   Dilated         10:05–10:40  (35min)  sc=0.083  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1419430       Cornea                          MRE   Non-Dilated     15:40–15:44  (4min)  sc=0.068  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1020403       Cornea                          MRE   Dilated         11:00–11:33  (33min)  sc=0.101  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1040112       Retina                          MRE   Procedure       08:00–08:15  (15min)  sc=0.069  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1470014       General                         MRE   Non-Dilated     15:35–15:44  (9min)  sc=0.065  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1442787       Pediatric and Low vision        REG   Non-Dilated     16:05–16:09  (4min)  sc=0.077  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1545910       Pediatric and Low vision        REG   Non-Dilated     16:10–16:21  (11min)  sc=0.080  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1288437       Retina                          MRE   Non-Dilated     12:00–12:03  (3min)  sc=0.036  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1490152       Cornea                          SRE   Non-Dilated     12:00–12:01  (1min)  sc=0.076  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1525221       Cornea                          SRE   Procedure       09:30–09:45  (15min)  sc=0.107  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1516388       Retina                          REG   Non-Dilated     15:50–15:52  (2min)  sc=0.042  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1341255       General                         MRE   Dilated         10:00–10:35  (35min)  sc=0.112  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1475931       Retina                          REG   Non-Dilated     15:55–15:58  (3min)  sc=0.044  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1463060       Cornea                          MRE   Non-Dilated     12:05–12:06  (1min)  sc=0.084  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1196167       Retina                          MRE   Non-Dilated     12:10–12:13  (3min)  sc=0.038  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1467902       General                         REG   Non-Dilated     14:50–14:55  (5min)  sc=0.076  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1313928       Retina                          MRE   Non-Dilated     12:05–12:06  (1min)  sc=0.042  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1497947       Glaucoma                        MRE   Non-Dilated     12:10–12:14  (4min)  sc=0.050  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1207869       Pediatric and Low vision        MRE   Dilated         11:00–11:48  (48min)  sc=0.122  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1214375       General                         MRE   Non-Dilated     12:00–12:09  (9min)  sc=0.077  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1079178       Cornea                          MRE   Procedure       08:15–08:30  (15min)  sc=0.118  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1416426       Retina                          MRE   Non-Dilated     12:10–12:12  (2min)  sc=0.045  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1521681       Pediatric and Low vision        REG   Non-Dilated     16:25–16:41  (16min)  sc=0.115  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1505332       Cornea                          REG   Non-Dilated     14:30–14:32  (2min)  sc=0.098  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1381213       Cornea                          MRE   Non-Dilated     12:10–12:13  (3min)  sc=0.096  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1403681       Glaucoma                        MRE   Non-Dilated     12:15–12:16  (1min)  sc=0.059  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1259853       Glaucoma                        MRE   Non-Dilated     12:20–12:21  (1min)  sc=0.061  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1557495       Cornea                          SRE   Dilated         09:15–09:35  (20min)  sc=0.130  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1431911       Retina                          MRE   Dilated         09:00–09:47  (47min)  sc=0.084  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1477292       Glaucoma                        REG   Non-Dilated     14:50–14:51  (1min)  sc=0.066  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1307184       Retina                          MRE   Non-Dilated     12:15–12:21  (6min)  sc=0.049  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1482541       Glaucoma                        MRE   Procedure       08:15–08:30  (15min)  sc=0.117  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1168966       Glaucoma                        SRE   Non-Dilated     12:25–12:31  (6min)  sc=0.065  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1558548       Cornea                          REG   Dilated         15:45–16:24  (39min)  sc=0.141  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1484560       Pediatric and Low vision        MRE   Dilated         08:30–08:54  (24min)  sc=0.161  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1499649       Pediatric and Low vision        REG   Dilated         14:30–15:11  (41min)  sc=0.180  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1217049       Pediatric and Low vision        MRE   Non-Dilated     12:20–12:34  (14min)  sc=0.076  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1488940       Pediatric and Low vision        SRE   Procedure       09:15–09:30  (15min)  sc=0.204  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1554189       Retina                          MRE   Dilated         10:00–10:42  (42min)  sc=0.087  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1427857       Glaucoma                        MRE   Procedure       08:00–08:15  (15min)  sc=0.129  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1531276       Glaucoma                        REG   Non-Dilated     14:55–14:56  (1min)  sc=0.088  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1278307       Cornea                          MRE   Non-Dilated     12:10–12:14  (4min)  sc=0.115  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1112161       Glaucoma                        MRE   Non-Dilated     12:35–12:38  (3min)  sc=0.080  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1162577       Pediatric and Low vision        SRE   Dilated         12:35–13:13  (38min)  sc=0.357  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1440762       Pediatric and Low vision        MRE   Non-Dilated     12:00–12:09  (9min)  sc=0.175  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1433996       Cornea                          REG   Non-Dilated     14:40–14:44  (4min)  sc=0.128  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1421402       Retina                          MRE   Procedure       08:15–08:30  (15min)  sc=0.098  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1178172       Retina                          MRE   Procedure       08:30–08:45  (15min)  sc=0.111  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1447235       General                         SRE   Non-Dilated     12:15–12:20  (5min)  sc=0.093  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1435039       Glaucoma                        REG   Non-Dilated     15:00–15:03  (3min)  sc=0.096  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1462329       Retina                          REG   Non-Dilated     14:45–14:46  (1min)  sc=0.065  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1473403       General                         REG   Dilated         15:45–16:26  (41min)  sc=0.137  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1552937       Cornea                          MRE   Non-Dilated     12:15–12:22  (7min)  sc=0.128  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1438239       Pediatric and Low vision        REG   Non-Dilated     15:15–15:24  (9min)  sc=0.186  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1537852       General                         SRE   Non-Dilated     12:20–12:31  (11min)  sc=0.103  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1532546       Cornea                          MRE   Non-Dilated     12:15–12:16  (1min)  sc=0.132  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1454764       Retina                          MRE   Dilated         09:00–09:49  (49min)  sc=0.121  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1498035       Pediatric and Low vision        MRE   Dilated         12:10–12:45  (35min)  sc=0.429  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1420727       General                         MRE   Non-Dilated     12:40–12:47  (7min)  sc=0.116  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  WALK-017      Glaucoma                        REG   Non-Dilated     15:05–15:09  (4min)  sc=0.104  [MAN]
+2026-06-29 01:22:21  INFO      BOOKED  1436617       Pediatric and Low vision        SRE   Non-Dilated     12:45–12:53  (8min)  sc=0.212  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1309469       Glaucoma                        MRE   Dilated         08:15–08:47  (32min)  sc=0.147  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1484224       Retina                          REG   Dilated         09:00–09:45  (45min)  sc=0.137  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1244913       Pediatric and Low vision        MRE   Non-Dilated     12:55–13:02  (7min)  sc=0.217  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1336915       Glaucoma                        MRE   Dilated         10:00–10:29  (29min)  sc=0.152  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1292652       Pediatric and Low vision        MRE   Non-Dilated     15:25–15:27  (2min)  sc=0.220  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1555923       General                         MRE   Non-Dilated     12:50–12:52  (2min)  sc=0.124  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1557996       Glaucoma                        REG   Non-Dilated     15:10–15:12  (2min)  sc=0.112  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1241873       Retina                          MRE   Non-Dilated     14:50–14:58  (8min)  sc=0.071  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1505217       Cornea                          MRE   Dilated         11:10–11:48  (38min)  sc=0.164  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1483822       General                         REG   Non-Dilated     14:55–14:56  (1min)  sc=0.131  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  WALK-006      Retina                          REG   Dilated         16:00–16:38  (38min)  sc=0.146  [MAN]
+2026-06-29 01:22:21  INFO      BOOKED  1414867       Retina                          MRE   Procedure       08:00–08:15  (15min)  sc=0.162  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1505272       Cornea                          MRE   Dilated         12:25–13:14  (49min)  sc=0.383  [EHR]
+2026-06-29 01:22:21  INFO      BOOKED  1451002       Pediatric and Low vision        SRE   Dilated         09:30–09:55  (25min)  sc=0.273  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1146908       Cornea                          MRE   Non-Dilated     14:35–14:44  (9min)  sc=0.161  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1049019       Retina                          SRE   Dilated         11:30–11:59  (29min)  sc=0.159  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1300193       Retina                          MRE   Non-Dilated     15:00–15:17  (17min)  sc=0.089  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1556049       Retina                          SRE   Dilated         08:15–08:35  (20min)  sc=0.175  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1391749       Glaucoma                        MRE   Procedure       08:30–08:45  (15min)  sc=0.185  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1510868       Cornea                          SRE   Dilated         08:30–08:59  (29min)  sc=0.214  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1437416       General                         REG   Non-Dilated     16:30–16:32  (2min)  sc=0.145  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1338178       Cornea                          SRE   Procedure       09:35–09:50  (15min)  sc=0.230  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1009649       Glaucoma                        MRE   Non-Dilated     12:40–12:42  (2min)  sc=0.123  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1310243       Pediatric and Low vision        MRE   Non-Dilated     13:05–13:14  (9min)  sc=0.243  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1424079       Cornea                          MRE   Dilated         11:35–11:58  (23min)  sc=0.226  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1400067       Retina                          MRE   Non-Dilated     12:25–12:39  (14min)  sc=0.094  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1156583       Cornea                          MRE   Non-Dilated     12:20–12:27  (7min)  sc=0.189  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1239077       Glaucoma                        MRE   Procedure       08:45–09:00  (15min)  sc=0.206  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1544336       Pediatric and Low vision        SRE   Non-Dilated     13:15–13:18  (3min)  sc=0.250  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1453689       General                         MRE   Dilated         11:00–11:26  (26min)  sc=0.175  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  WALK-002      Glaucoma                        REG   Non-Dilated     15:15–15:19  (4min)  sc=0.138  [MAN]
+2026-06-29 01:22:22  INFO      BOOKED  1288135       Retina                          MRE   Procedure       08:15–08:30  (15min)  sc=0.194  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1496655       Pediatric and Low vision        MRE   Non-Dilated     16:45–16:50  (5min)  sc=0.251  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1437735       Retina                          REG   Dilated         15:35–16:08  (33min)  sc=0.196  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1499283       Glaucoma                        REG   Non-Dilated     15:20–15:24  (4min)  sc=0.146  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1519410       Glaucoma                        REG   Non-Dilated     15:30–15:38  (8min)  sc=0.152  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1396187       General                         MRE   Non-Dilated     12:35–12:49  (14min)  sc=0.143  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1445898       Retina                          REG   Non-Dilated     15:20–15:26  (6min)  sc=0.133  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1484669       Glaucoma                        MRE   Procedure       09:20–09:35  (15min)  sc=0.220  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1560624       Cornea                          SRE   Non-Dilated     12:30–12:32  (2min)  sc=0.196  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1457647       Retina                          SRE   Non-Dilated     12:15–12:30  (15min)  sc=0.136  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1470746       Cornea                          REG   Non-Dilated     16:25–16:27  (2min)  sc=0.205  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1436957       General                         REG   Non-Dilated     14:30–14:33  (3min)  sc=0.157  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1540476       General                         MRE   Non-Dilated     12:10–12:14  (4min)  sc=0.153  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  WALK-018      Cornea                          REG   Dilated         14:45–15:23  (38min)  sc=0.247  [MAN]
+2026-06-29 01:22:22  INFO      BOOKED  1463403       Pediatric and Low vision        REG   Non-Dilated     16:50–16:51  (1min)  sc=0.265  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1505115       Cornea                          MRE   Non-Dilated     13:15–13:19  (4min)  sc=0.214  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1540737       General                         REG   Dilated         09:15–09:42  (27min)  sc=0.208  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1444528       Cornea                          SRE   Dilated         08:15–08:53  (38min)  sc=0.264  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1462807       Cornea                          REG   Non-Dilated     10:40–10:47  (7min)  sc=0.248  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1523432       Pediatric and Low vision        SRE   Procedure       13:15–13:30  (15min)  sc=0.500  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1338592       Pediatric and Low vision        MRE   Non-Dilated     10:40–10:51  (11min)  sc=0.296  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1139893       Pediatric and Low vision        MRE   Non-Dilated     13:20–13:23  (3min)  sc=0.266  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1244769       General                         MRE   Dilated         09:00–09:44  (44min)  sc=0.223  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1541433       Pediatric and Low vision        SRE   Non-Dilated     11:50–11:58  (8min)  sc=0.314  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1068235       Cornea                          MRE   Procedure       09:45–10:00  (15min)  sc=0.287  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  P665207       Glaucoma                        MRE   Dilated         11:30–11:52  (22min)  sc=0.195  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1513614       Cornea                          MRE   Non-Dilated     12:35–12:36  (1min)  sc=0.235  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1429379       Retina                          MRE   Procedure       08:45–09:00  (15min)  sc=0.215  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1558521       Glaucoma                        SRE   Procedure       09:35–09:50  (15min)  sc=0.254  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1448434       Retina                          REG   Non-Dilated     14:30–14:36  (6min)  sc=0.184  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1462043       Retina                          REG   Non-Dilated     16:40–16:41  (1min)  sc=0.167  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1428844       General                         MRE   Non-Dilated     12:15–12:18  (3min)  sc=0.159  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1010599       Glaucoma                        MRE   Non-Dilated     12:45–12:57  (12min)  sc=0.152  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1470975       General                         MRE   Non-Dilated     12:20–12:28  (8min)  sc=0.163  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1015045       Cornea                          MRE   Non-Dilated     12:40–12:44  (4min)  sc=0.238  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1496613       Cornea                          SRE   Non-Dilated     12:45–12:51  (6min)  sc=0.241  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1513934       Pediatric and Low vision        REG   Non-Dilated     10:55–10:58  (3min)  sc=0.309  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1381894       Cornea                          MRE   Procedure       16:30–16:45  (15min)  sc=0.484  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1315938       Retina                          SRE   Non-Dilated     12:40–12:42  (2min)  sc=0.148  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1438996       Glaucoma                        MRE   Dilated         12:00–12:41  (41min)  sc=0.410  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1528884       General                         REG   Non-Dilated     10:45–10:52  (7min)  sc=0.214  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1472754       Glaucoma                        REG   Non-Dilated     09:50–09:57  (7min)  sc=0.269  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1248016       General                         SRE   Procedure       08:30–08:45  (15min)  sc=0.224  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1525233       General                         REG   Non-Dilated     09:35–09:44  (9min)  sc=0.246  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1513264       Cornea                          REG   Non-Dilated     16:45–16:46  (1min)  sc=0.256  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1056184       General                         MRE   Non-Dilated     12:50–12:58  (8min)  sc=0.183  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  WALK-004      General                         REG   Non-Dilated     09:45–09:49  (4min)  sc=0.254  [MAN]
+2026-06-29 01:22:22  INFO      BOOKED  1417272       Cornea                          MRE   Procedure       14:45–15:00  (15min)  sc=0.498  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1508815       Retina                          REG   Non-Dilated     09:50–09:59  (9min)  sc=0.236  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1292522       Glaucoma                        MRE   Dilated         12:45–13:22  (37min)  sc=0.438  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1528796       Retina                          SRE   Non-Dilated     12:45–12:48  (3min)  sc=0.165  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1519100       Glaucoma                        SRE   Non-Dilated     13:00–13:05  (5min)  sc=0.188  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1374505       Pediatric and Low vision        MRE   Non-Dilated     16:55–16:58  (3min)  sc=0.289  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1009889       General                         MRE   Procedure       08:45–09:00  (15min)  sc=0.247  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1083134       General                         MRE   Non-Dilated     13:00–13:01  (1min)  sc=0.203  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1435993       Glaucoma                        MRE   Procedure       13:05–13:20  (15min)  sc=0.437  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1021557       Glaucoma                        MRE   Dilated         15:40–16:26  (46min)  sc=0.495  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1451741       Pediatric and Low vision        SRE   Non-Dilated     13:25–13:26  (1min)  sc=0.293  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1120717       General                         MRE   Dilated         11:30–11:56  (26min)  sc=0.236  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1161680       Glaucoma                        MRE   Non-Dilated     15:40–15:52  (12min)  sc=0.237  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1354471       General                         MRE   Dilated         08:15–08:48  (33min)  sc=0.274  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  WALK-001      Retina                          REG   Non-Dilated     09:50–09:54  (4min)  sc=0.248  [MAN]
+2026-06-29 01:22:22  INFO      BOOKED  1493458       Glaucoma                        REG   Non-Dilated     09:55–09:59  (4min)  sc=0.305  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1439504       Retina                          MRE   Procedure       08:30–08:45  (15min)  sc=0.243  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1385358       General                         MRE   Dilated         12:30–12:59  (29min)  sc=0.455  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1412386       General                         MRE   Dilated         14:35–15:24  (49min)  sc=0.515  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1529156       Cornea                          REG   Non-Dilated     15:25–15:27  (2min)  sc=0.280  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1541248       Glaucoma                        REG   Non-Dilated     10:30–10:32  (2min)  sc=0.248  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1415129       Glaucoma                        MRE   Procedure       10:35–10:50  (15min)  sc=0.490  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1403605       Cornea                          MRE   Dilated         12:55–13:30  (35min)  sc=0.512  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1535242       Retina                          MRE   Non-Dilated     12:50–12:51  (1min)  sc=0.185  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1364014       Glaucoma                        MRE   Non-Dilated     15:55–16:11  (16min)  sc=0.262  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1445938       Cornea                          SRE   Non-Dilated     13:20–13:27  (7min)  sc=0.280  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1506815       Glaucoma                        MRE   Procedure       14:30–14:45  (15min)  sc=0.504  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1493809       Retina                          MRE   Procedure       08:45–09:00  (15min)  sc=0.257  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1233162       Retina                          SRE   Procedure       09:45–10:00  (15min)  sc=0.258  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1451655       Pediatric and Low vision        REG   Non-Dilated     09:55–09:57  (2min)  sc=0.362  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1361932       General                         MRE   Non-Dilated     13:05–13:12  (7min)  sc=0.216  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1163070       Retina                          MRE   Non-Dilated     12:55–12:57  (2min)  sc=0.189  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1142703       Pediatric and Low vision        MRE   Non-Dilated     08:55–08:59  (4min)  sc=0.603  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1399025       Retina                          MRE   Non-Dilated     13:00–13:03  (3min)  sc=0.195  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1468661       Retina                          MRE   Procedure       08:35–08:50  (15min)  sc=0.271  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1466610       General                         SRE   Non-Dilated     13:15–13:23  (8min)  sc=0.229  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  WALK-003      Cornea                          REG   Non-Dilated     09:50–09:54  (4min)  sc=0.337  [MAN]
+2026-06-29 01:22:22  INFO      BOOKED  WALK-019      General                         REG   Non-Dilated     09:45–09:49  (4min)  sc=0.314  [MAN]
+2026-06-29 01:22:22  INFO      BOOKED  1487830       General                         REG   Non-Dilated     15:00–15:01  (1min)  sc=0.248  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1492534       Retina                          REG   Non-Dilated     10:00–10:01  (1min)  sc=0.212  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  WALK-014      Cornea                          REG   Non-Dilated     09:55–09:59  (4min)  sc=0.341  [MAN]
+2026-06-29 01:22:22  INFO      BOOKED  1055409       Cornea                          MRE   Non-Dilated     15:00–15:01  (1min)  sc=0.298  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1443400       Glaucoma                        MRE   Non-Dilated     13:20–13:26  (6min)  sc=0.236  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1538526       Glaucoma                        MRE   Procedure       14:45–15:00  (15min)  sc=0.516  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1384837       Glaucoma                        SRE   Procedure       16:15–16:30  (15min)  sc=0.518  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1483382       Retina                          MRE   Non-Dilated     12:30–12:32  (2min)  sc=0.198  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1465488       Retina                          REG   Non-Dilated     09:55–09:57  (2min)  sc=0.260  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1311040       General                         MRE   Dilated         12:55–13:30  (35min)  sc=0.506  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1365137       Retina                          MRE   Dilated         10:05–10:49  (44min)  sc=0.215  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1277714       General                         MRE   Non-Dilated     13:25–13:29  (4min)  sc=0.251  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1479014       General                         MRE   Procedure       08:45–09:00  (15min)  sc=0.323  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1290529       Glaucoma                        MRE   Non-Dilated     15:25–15:27  (2min)  sc=0.254  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1512924       Glaucoma                        SRE   Procedure       16:30–16:45  (15min)  sc=0.528  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1216287       Cornea                          MRE   Procedure       15:05–15:20  (15min)  sc=0.543  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1397880       Retina                          MRE   Non-Dilated     12:35–12:38  (3min)  sc=0.207  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1505762       Glaucoma                        SRE   Dilated         16:30–17:00  (30min)  sc=0.576  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1497209       Retina                          MRE   Non-Dilated     13:05–13:06  (1min)  sc=0.211  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1329147       Retina                          MRE   Non-Dilated     12:40–12:57  (17min)  sc=0.212  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1382383       Retina                          MRE   Non-Dilated     13:10–13:13  (3min)  sc=0.216  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1341123       Retina                          SRE   Non-Dilated     13:15–13:18  (3min)  sc=0.225  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1450790       Retina                          MRE   Non-Dilated     13:20–13:24  (4min)  sc=0.234  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1478970       Cornea                          MRE   Non-Dilated     10:50–10:52  (2min)  sc=0.315  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1500189       General                         REG   Non-Dilated     09:50–09:55  (5min)  sc=0.333  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1484983       Glaucoma                        SRE   Non-Dilated     13:25–13:29  (4min)  sc=0.297  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1446050       Retina                          SRE   Procedure       10:00–10:15  (15min)  sc=0.481  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1390508       General                         MRE   Procedure       09:45–10:00  (15min)  sc=0.345  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1128570       Cornea                          MRE   Non-Dilated     15:20–15:29  (9min)  sc=0.317  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1498401       Cornea                          MRE   Non-Dilated     16:50–16:54  (4min)  sc=0.320  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1522006       General                         REG   Non-Dilated     09:50–09:59  (9min)  sc=0.348  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1548802       General                         SRE   Procedure       15:05–15:20  (15min)  sc=0.508  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1327621       Cornea                          MRE   Non-Dilated     10:55–10:58  (3min)  sc=0.322  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1484426       Glaucoma                        MRE   Dilated         15:00–15:28  (28min)  sc=0.588  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1507623       Glaucoma                        SRE   Non-Dilated     16:45–16:47  (2min)  sc=0.324  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1265848       General                         MRE   Non-Dilated     13:00–13:02  (2min)  sc=0.295  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1434463       Glaucoma                        MRE   Non-Dilated     16:50–16:55  (5min)  sc=0.326  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1489300       General                         REG   Non-Dilated     09:55–09:58  (3min)  sc=0.345  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1377792       General                         MRE   Non-Dilated     13:05–13:10  (5min)  sc=0.299  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1523219       Retina                          MRE   Dilated         10:15–10:46  (31min)  sc=0.257  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1493784       Retina                          MRE   Non-Dilated     12:15–12:18  (3min)  sc=0.242  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1172260       Glaucoma                        MRE   Procedure       11:40–11:55  (15min)  sc=0.569  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1423346       Retina                          SRE   Non-Dilated     12:20–12:21  (1min)  sc=0.244  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  P838996       Retina                          MRE   Non-Dilated     12:25–12:26  (1min)  sc=0.245  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1526823       Glaucoma                        SRE   Non-Dilated     16:55–16:56  (1min)  sc=0.329  [EHR]
+2026-06-29 01:22:22  INFO      BOOKED  1509723       Retina                          MRE   Procedure       12:30–12:45  (15min)  sc=0.486  [EHR]
+2026-06-29 01:22:23  INFO      BOOKED  1327172       Retina                          MRE   Non-Dilated     13:00–13:02  (2min)  sc=0.248  [EHR]
+2026-06-29 01:22:23  INFO      BOOKED  1392128       General                         MRE   Non-Dilated     15:20–15:24  (4min)  sc=0.303  [EHR]
+2026-06-29 01:22:23  INFO      BOOKED  1016788       General                         MRE   Non-Dilated     13:10–13:16  (6min)  sc=0.306  [EHR]
+2026-06-29 01:22:23  INFO      BOOKED  1043686       Retina                          MRE   Procedure       13:05–13:20  (15min)  sc=0.492  [EHR]
+2026-06-29 01:22:23  INFO      BOOKED  1292140       Retina                          MRE   Procedure       12:00–12:15  (15min)  sc=0.494  [EHR]
+2026-06-29 01:22:23  INFO      BOOKED  1300780       General                         MRE   Non-Dilated     15:25–15:30  (5min)  sc=0.311  [EHR]
+2026-06-29 01:22:23  INFO      BOOKED  1467908       Glaucoma                        MRE   Non-Dilated     11:55–11:58  (3min)  sc=0.335  [EHR]
+2026-06-29 01:22:23  INFO      BOOKED  1552385       Retina                          SRE   Dilated         11:30–11:56  (26min)  sc=0.271  [EHR]
+2026-06-29 01:22:23  INFO      BOOKED  1523124       Cornea                          SRE   Non-Dilated     16:55–16:57  (2min)  sc=0.326  [EHR]
+2026-06-29 01:22:23  INFO      BOOKED  1414446       Retina                          MRE   Non-Dilated     12:15–12:25  (10min)  sc=0.266  [EHR]
+2026-06-29 01:22:23  INFO      BOOKED  1454682       Retina                          SRE   Non-Dilated     13:25–13:27  (2min)  sc=0.256  [EHR]
+2026-06-29 01:22:23  INFO      BOOKED  1410688       Retina                          MRE   Dilated         11:00–11:49  (49min)  sc=0.294  [EHR]
+2026-06-29 01:22:23  INFO      BOOKED  1442338       General                         MRE   Non-Dilated     13:20–13:24  (4min)  sc=0.316  [EHR]
+2026-06-29 01:22:23  INFO      BOOKED  1495736       General                         SRE   Non-Dilated     13:25–13:29  (4min)  sc=0.320  [EHR]
+2026-06-29 01:22:23  INFO      BOOKED  1153732       General                         SRE   Procedure       16:35–16:50  (15min)  sc=0.565  [EHR]
+2026-06-29 01:22:23  INFO      BOOKED  1451950       Retina                          MRE   Non-Dilated     12:25–12:27  (2min)  sc=0.275  [EHR]
+2026-06-29 01:22:23  INFO      BOOKED  1411574       General                         MRE   Procedure       10:35–10:50  (15min)  sc=0.573  [EHR]
+2026-06-29 01:22:23  INFO      BOOKED  1435002       Glaucoma                        MRE   Non-Dilated     10:40–10:47  (7min)  sc=0.342  [EHR]
+2026-06-29 01:22:23  INFO      BOOKED  1506965       Cornea                          SRE   Non-Dilated     10:50–10:51  (1min)  sc=0.344  [EHR]
+2026-06-29 01:22:23  INFO      BOOKED  1186207       Glaucoma                        MRE   Non-Dilated     10:50–10:55  (5min)  sc=0.348  [EHR]
+2026-06-29 01:22:23  INFO      BOOKED  1465698       Retina                          MRE   Procedure       12:30–12:45  (15min)  sc=0.516  [EHR]
+2026-06-29 01:22:23  INFO      BOOKED  1512253       Cornea                          SRE   Non-Dilated     10:55–10:59  (4min)  sc=0.346  [EHR]
+2026-06-29 01:22:23  INFO      BOOKED  1542253       Glaucoma                        MRE   Non-Dilated     10:55–10:59  (4min)  sc=0.352  [EHR]
+2026-06-29 01:22:23  INFO      BOOKED  1191793       Retina                          MRE   Dilated         12:45–13:30  (45min)  sc=0.522  [EHR]
+2026-06-29 01:22:23  INFO      BOOKED  1419666       Cornea                          SRE   Non-Dilated     11:50–11:58  (8min)  sc=0.353  [EHR]
+2026-06-29 01:22:23  INFO      BOOKED  1180978       Glaucoma                        MRE   Non-Dilated     10:50–10:53  (3min)  sc=0.355  [EHR]
+2026-06-29 01:22:23  INFO      BOOKED  1053188       Retina                          MRE   Procedure       14:40–14:55  (15min)  sc=0.533  [EHR]
+2026-06-29 01:22:23  INFO      BOOKED  1493619       Cornea                          MRE   Non-Dilated     08:55–08:57  (2min)  sc=0.608  [EHR]
+2026-06-29 01:22:23  INFO      BOOKED  1411408       Retina                          MRE   Non-Dilated     13:20–13:26  (6min)  sc=0.292  [EHR]
+2026-06-29 01:22:23  INFO      BOOKED  1463848       Retina                          MRE   Procedure       12:45–13:00  (15min)  sc=0.544  [EHR]
+2026-06-29 01:22:23  INFO      BOOKED  1248049       Retina                          MRE   Dilated         16:10–16:43  (33min)  sc=0.592  [EHR]
+2026-06-29 01:22:23  INFO      BOOKED  1347054       Glaucoma                        MRE   Non-Dilated     10:55–10:56  (1min)  sc=0.359  [EHR]
+2026-06-29 01:22:23  INFO      BOOKED  1244023       Retina                          SRE   Procedure       13:00–13:15  (15min)  sc=0.556  [EHR]
+2026-06-29 01:22:23  INFO      BOOKED  1400810       General                         MRE   Non-Dilated     10:55–10:57  (2min)  sc=0.342  [EHR]
+2026-06-29 01:22:23  INFO      BOOKED  1552155       Retina                          SRE   Procedure       14:55–15:10  (15min)  sc=0.565  [EHR]
+2026-06-29 01:22:23  INFO      BOOKED  1436186       Glaucoma                        MRE   Non-Dilated     11:55–11:59  (4min)  sc=0.372  [EHR]
+2026-06-29 01:22:23  INFO      BOOKED  1395518       Glaucoma                        MRE   Non-Dilated     08:50–08:59  (9min)  sc=0.613  [EHR]
+2026-06-29 01:22:23  INFO      BOOKED  1230170       General                         MRE   Non-Dilated     16:50–16:53  (3min)  sc=0.347  [EHR]
+2026-06-29 01:22:23  INFO      BOOKED  1534013       Retina                          SRE   Non-Dilated     16:45–16:49  (4min)  sc=0.332  [EHR]
+2026-06-29 01:22:23  INFO      BOOKED  1326945       Retina                          MRE   Non-Dilated     13:15–13:28  (13min)  sc=0.337  [EHR]
+2026-06-29 01:22:23  INFO      BOOKED  1079240       Retina                          MRE   Non-Dilated     16:50–16:53  (3min)  sc=0.336  [EHR]
+2026-06-29 01:22:23  INFO      BOOKED  1205593       Retina                          SRE   Procedure       16:45–17:00  (15min)  sc=0.582  [EHR]
+2026-06-29 01:22:23  INFO      BOOKED  1539716       General                         SRE   Non-Dilated     15:25–15:29  (4min)  sc=0.350  [EHR]
+2026-06-29 01:22:23  INFO      BOOKED  1456033       Retina                          SRE   Non-Dilated     10:50–10:52  (2min)  sc=0.341  [EHR]
+2026-06-29 01:22:23  INFO      BOOKED  1473836       General                         MRE   Non-Dilated     16:55–16:57  (2min)  sc=0.357  [EHR]
+2026-06-29 01:22:23  INFO      BOOKED  1477684       General                         MRE   Non-Dilated     10:50–10:54  (4min)  sc=0.365  [EHR]
+2026-06-29 01:22:23  INFO      BOOKED  1419423       General                         MRE   Non-Dilated     10:55–10:57  (2min)  sc=0.371  [EHR]
+2026-06-29 01:22:23  INFO      Step 6: Saving 341 bookings
+2026-06-29 01:22:23  INFO      Step 7: Integrity audit
+2026-06-29 01:22:23  INFO        Overlaps: 0  REG violations: 0
+2026-06-29 01:22:23  INFO      ====================================================================
+2026-06-29 01:22:23  INFO      CAPACITY REPORT — Mon
+2026-06-29 01:22:23  INFO      Period          FU-min  REG-min   Total    FU%   REG%  Status
+2026-06-29 01:22:23  INFO      --------------------------------------------------------------------
+2026-06-29 01:22:23  INFO      08-09              625        0     625  94.7%   0.0%  NEAR FULL
+2026-06-29 01:22:23  INFO      09-10              410      220     630  62.1%  33.3%  NEAR FULL
+2026-06-29 01:22:23  INFO      10-11              277      225     502  46.2%  37.5%  
+2026-06-29 01:22:23  INFO      11-12              490        0     490  90.7%   0.0%  NEAR FULL
+2026-06-29 01:22:23  INFO      12-13:30           932        0     932  79.7%   0.0%  
+2026-06-29 01:22:23  INFO      14:30-15:30        258      225     483  43.0%  37.5%  
+2026-06-29 01:22:23  INFO      15:30-17           289      236     525  45.9%  37.5%  
+2026-06-29 01:22:23  INFO      --------------------------------------------------------------------
+2026-06-29 01:22:23  INFO      OPD capacity : 4860 min  |  Booked: 4187 min  (86.2%)
+2026-06-29 01:22:23  INFO      ====================================================================
+2026-06-29 01:22:23  INFO      SUMMARY
+2026-06-29 01:22:23  INFO        Pool attempted   : 535
+2026-06-29 01:22:23  INFO        PLACED           : 341  (EHR=329  MANUAL=12)
+2026-06-29 01:22:23  INFO        Rejected (dup)   : 0
+2026-06-29 01:22:23  INFO        Rejected (cap)   : 194
+2026-06-29 01:22:23  INFO        Avg consult slot : 12.3 min  (range 1-49)
+2026-06-29 01:22:23  INFO        Booking speed    : 2.15s for 535 calls
+2026-06-29 01:22:23  INFO        Overlaps         : 0
+2026-06-29 01:22:23  INFO        REG violations   : 0
+2026-06-29 01:22:23  INFO      
+2026-06-29 01:22:23  INFO        By visit category:
+2026-06-29 01:22:23  INFO          MRE  : 197 placed
+2026-06-29 01:22:23  INFO          SRE  : 63 placed
+2026-06-29 01:22:23  INFO          REG  : 81 placed
+2026-06-29 01:22:23  INFO        By flow:
+2026-06-29 01:22:23  INFO          Non-Dilated    : 215 placed
+2026-06-29 01:22:23  INFO          Dilated        : 61 placed
+2026-06-29 01:22:23  INFO          Procedure      : 65 placed
+2026-06-29 01:22:23  INFO        By specialty:
+2026-06-29 01:22:23  INFO          Retina                         : 88 placed  20 rejected
+2026-06-29 01:22:23  INFO          Glaucoma                       : 70 placed  37 rejected
+2026-06-29 01:22:23  INFO          Cornea                         : 68 placed  39 rejected
+2026-06-29 01:22:23  INFO          General                        : 74 placed  33 rejected
+2026-06-29 01:22:23  INFO          Pediatric and Low vision       : 41 placed  65 rejected
+2026-06-29 01:22:23  INFO      
+2026-06-29 01:22:23  INFO        Manual walk-ins placed (12/20):
+2026-06-29 01:22:23  INFO          WALK-005      Pediatric and Low vision        Non-Dilated     10:00–10:04  (4min)
+2026-06-29 01:22:23  INFO          WALK-007      Glaucoma                        Dilated         09:00–09:38  (38min)
+2026-06-29 01:22:23  INFO          WALK-011      Retina                          Non-Dilated     14:30–14:34  (4min)
+2026-06-29 01:22:23  INFO          WALK-017      Glaucoma                        Non-Dilated     15:05–15:09  (4min)
+2026-06-29 01:22:23  INFO          WALK-006      Retina                          Dilated         16:00–16:38  (38min)
+2026-06-29 01:22:23  INFO          WALK-002      Glaucoma                        Non-Dilated     15:15–15:19  (4min)
+2026-06-29 01:22:23  INFO          WALK-018      Cornea                          Dilated         14:45–15:23  (38min)
+2026-06-29 01:22:23  INFO          WALK-004      General                         Non-Dilated     09:45–09:49  (4min)
+2026-06-29 01:22:23  INFO          WALK-001      Retina                          Non-Dilated     09:50–09:54  (4min)
+2026-06-29 01:22:23  INFO          WALK-003      Cornea                          Non-Dilated     09:50–09:54  (4min)
+2026-06-29 01:22:23  INFO          WALK-019      General                         Non-Dilated     09:45–09:49  (4min)
+2026-06-29 01:22:23  INFO          WALK-014      Cornea                          Non-Dilated     09:55–09:59  (4min)
+2026-06-29 01:22:23  INFO      
+2026-06-29 01:22:23  INFO        Capacity-rejected patients:
+2026-06-29 01:22:23  INFO          1450177       Pediatric and Low vision        REG   Dilated         dur=50min
+2026-06-29 01:22:23  INFO          1562085       Pediatric and Low vision        REG   Non-Dilated     dur=7min
+2026-06-29 01:22:23  INFO          1477246       Pediatric and Low vision        MRE   Dilated         dur=26min
+2026-06-29 01:22:23  INFO          1524005       Glaucoma                        REG   Dilated         dur=44min
+2026-06-29 01:22:23  INFO          1475971       Pediatric and Low vision        MRE   Procedure       dur=15min
+2026-06-29 01:22:23  INFO          WALK-015      Pediatric and Low vision        REG   Dilated         dur=38min
+2026-06-29 01:22:23  INFO          1167110       Pediatric and Low vision        MRE   Procedure       dur=15min
+2026-06-29 01:22:23  INFO          1513120       Retina                          REG   Dilated         dur=45min
+2026-06-29 01:22:23  INFO          1239314       Pediatric and Low vision        MRE   Procedure       dur=15min
+2026-06-29 01:22:23  INFO          1446412       Pediatric and Low vision        REG   Non-Dilated     dur=9min
+2026-06-29 01:22:23  INFO          1447955       Cornea                          MRE   Dilated         dur=36min
+2026-06-29 01:22:23  INFO          1514731       Glaucoma                        REG   Dilated         dur=33min
+2026-06-29 01:22:23  INFO          1526063       Cornea                          REG   Dilated         dur=37min
+2026-06-29 01:22:23  INFO          1503908       Pediatric and Low vision        REG   Non-Dilated     dur=9min
+2026-06-29 01:22:23  INFO          1486588       Retina                          REG   Dilated         dur=39min
+2026-06-29 01:22:23  INFO          1439917       Glaucoma                        REG   Non-Dilated     dur=6min
+2026-06-29 01:22:23  INFO          1478189       Pediatric and Low vision        MRE   Non-Dilated     dur=6min
+2026-06-29 01:22:23  INFO          1467325       Pediatric and Low vision        REG   Non-Dilated     dur=8min
+2026-06-29 01:22:23  INFO          1515759       Pediatric and Low vision        MRE   Procedure       dur=15min
+2026-06-29 01:22:23  INFO          1438174       Pediatric and Low vision        MRE   Non-Dilated     dur=5min
+2026-06-29 01:22:23  INFO          1433917       Pediatric and Low vision        REG   Dilated         dur=47min
+2026-06-29 01:22:23  INFO          1554812       Cornea                          REG   Dilated         dur=48min
+2026-06-29 01:22:23  INFO          1451924       Pediatric and Low vision        REG   Non-Dilated     dur=1min
+2026-06-29 01:22:23  INFO          1251357       Pediatric and Low vision        MRE   Dilated         dur=36min
+2026-06-29 01:22:23  INFO          1512591       Glaucoma                        REG   Non-Dilated     dur=2min
+2026-06-29 01:22:23  INFO          1199210       Pediatric and Low vision        MRE   Non-Dilated     dur=6min
+2026-06-29 01:22:23  INFO          1519401       Pediatric and Low vision        SRE   Non-Dilated     dur=6min
+2026-06-29 01:22:23  INFO          1468541       Pediatric and Low vision        REG   Non-Dilated     dur=2min
+2026-06-29 01:22:23  INFO          1553893       Retina                          REG   Non-Dilated     dur=5min
+2026-06-29 01:22:23  INFO          1523807       Pediatric and Low vision        REG   Non-Dilated     dur=3min
+2026-06-29 01:22:23  INFO          1358732       Cornea                          MRE   Non-Dilated     dur=16min
+2026-06-29 01:22:23  INFO          1477830       Cornea                          REG   Non-Dilated     dur=4min
+2026-06-29 01:22:23  INFO          1490777       Cornea                          MRE   Procedure       dur=15min
+2026-06-29 01:22:23  INFO          1488794       Cornea                          REG   Non-Dilated     dur=11min
+2026-06-29 01:22:23  INFO          1113332       Pediatric and Low vision        MRE   Procedure       dur=15min
+2026-06-29 01:22:23  INFO          1557725       Pediatric and Low vision        REG   Non-Dilated     dur=1min
+2026-06-29 01:22:23  INFO          1111271       Pediatric and Low vision        MRE   Procedure       dur=15min
+2026-06-29 01:22:23  INFO          1428798       Cornea                          MRE   Procedure       dur=15min
+2026-06-29 01:22:23  INFO          1539019       Pediatric and Low vision        SRE   Procedure       dur=15min
+2026-06-29 01:22:23  INFO          1335321       Pediatric and Low vision        MRE   Dilated         dur=26min
+2026-06-29 01:22:23  INFO          1557064       Glaucoma                        REG   Non-Dilated     dur=2min
+2026-06-29 01:22:23  INFO          1483099       Retina                          REG   Non-Dilated     dur=4min
+2026-06-29 01:22:23  INFO          1509311       Glaucoma                        REG   Dilated         dur=38min
+2026-06-29 01:22:23  INFO          1319630       Pediatric and Low vision        MRE   Dilated         dur=39min
+2026-06-29 01:22:23  INFO          1493548       General                         REG   Dilated         dur=38min
+2026-06-29 01:22:23  INFO          1545644       Cornea                          REG   Non-Dilated     dur=1min
+2026-06-29 01:22:23  INFO          1453361       Glaucoma                        REG   Dilated         dur=46min
+2026-06-29 01:22:23  INFO          1433507       Pediatric and Low vision        MRE   Non-Dilated     dur=3min
+2026-06-29 01:22:23  INFO          1413127       Cornea                          MRE   Dilated         dur=44min
+2026-06-29 01:22:23  INFO          1475491       Retina                          REG   Dilated         dur=39min
+2026-06-29 01:22:23  INFO          WALK-016      Retina                          REG   Non-Dilated     dur=4min
+2026-06-29 01:22:23  INFO          1509538       Retina                          REG   Dilated         dur=39min
+2026-06-29 01:22:23  INFO          1475906       General                         REG   Non-Dilated     dur=5min
+2026-06-29 01:22:23  INFO          1409243       Pediatric and Low vision        MRE   Procedure       dur=15min
+2026-06-29 01:22:23  INFO          1542319       General                         SRE   Dilated         dur=37min
+2026-06-29 01:22:23  INFO          1389772       Pediatric and Low vision        MRE   Non-Dilated     dur=12min
+2026-06-29 01:22:23  INFO          1482441       Retina                          REG   Non-Dilated     dur=2min
+2026-06-29 01:22:23  INFO          1532191       General                         REG   Non-Dilated     dur=11min
+2026-06-29 01:22:23  INFO          1454340       Retina                          REG   Non-Dilated     dur=19min
+2026-06-29 01:22:23  INFO          1466001       Cornea                          REG   Non-Dilated     dur=4min
+2026-06-29 01:22:23  INFO          1524722       General                         REG   Non-Dilated     dur=4min
+2026-06-29 01:22:23  INFO          1486818       Cornea                          REG   Non-Dilated     dur=13min
+2026-06-29 01:22:23  INFO          1405196       Pediatric and Low vision        MRE   Procedure       dur=15min
+2026-06-29 01:22:23  INFO          WALK-009      General                         REG   Non-Dilated     dur=4min
+2026-06-29 01:22:23  INFO          1534668       General                         SRE   Dilated         dur=34min
+2026-06-29 01:22:23  INFO          WALK-013      General                         REG   Non-Dilated     dur=4min
+2026-06-29 01:22:23  INFO          1466394       Retina                          REG   Non-Dilated     dur=8min
+2026-06-29 01:22:23  INFO          1432247       Retina                          REG   Non-Dilated     dur=2min
+2026-06-29 01:22:23  INFO          1501446       Cornea                          REG   Non-Dilated     dur=9min
+2026-06-29 01:22:23  INFO          1329938       Cornea                          MRE   Procedure       dur=15min
+2026-06-29 01:22:23  INFO          1294266       Pediatric and Low vision        MRE   Procedure       dur=15min
+2026-06-29 01:22:23  INFO          1251977       Pediatric and Low vision        MRE   Non-Dilated     dur=2min
+2026-06-29 01:22:23  INFO          WALK-020      Retina                          REG   Non-Dilated     dur=4min
+2026-06-29 01:22:23  INFO          1547522       Pediatric and Low vision        SRE   Non-Dilated     dur=11min
+2026-06-29 01:22:23  INFO          1491344       Pediatric and Low vision        REG   Dilated         dur=43min
+2026-06-29 01:22:23  INFO          1485158       Glaucoma                        REG   Non-Dilated     dur=3min
+2026-06-29 01:22:23  INFO          1554677       Cornea                          SRE   Procedure       dur=15min
+2026-06-29 01:22:23  INFO          1056107       General                         MRE   Dilated         dur=47min
+2026-06-29 01:22:23  INFO          1540356       Cornea                          REG   Non-Dilated     dur=3min
+2026-06-29 01:22:23  INFO          1519681       General                         REG   Non-Dilated     dur=3min
+2026-06-29 01:22:23  INFO          1499179       Glaucoma                        REG   Non-Dilated     dur=7min
+2026-06-29 01:22:23  INFO          1551713       Pediatric and Low vision        SRE   Procedure       dur=15min
+2026-06-29 01:22:23  INFO          1435517       Retina                          REG   Non-Dilated     dur=1min
+2026-06-29 01:22:23  INFO          1433936       Pediatric and Low vision        MRE   Procedure       dur=15min
+2026-06-29 01:22:23  INFO          1462046       Pediatric and Low vision        MRE   Non-Dilated     dur=3min
+2026-06-29 01:22:23  INFO          1389295       Cornea                          MRE   Procedure       dur=15min
+2026-06-29 01:22:23  INFO          1244808       General                         SRE   Dilated         dur=50min
+2026-06-29 01:22:23  INFO          WALK-008      Cornea                          REG   Non-Dilated     dur=4min
+2026-06-29 01:22:23  INFO          1498396       Cornea                          REG   Non-Dilated     dur=4min
+2026-06-29 01:22:23  INFO          1495504       Pediatric and Low vision        REG   Non-Dilated     dur=7min
+2026-06-29 01:22:23  INFO          1332707       Glaucoma                        MRE   Dilated         dur=21min
+2026-06-29 01:22:23  INFO          1549488       General                         REG   Dilated         dur=22min
+2026-06-29 01:22:23  INFO          1402616       Glaucoma                        MRE   Procedure       dur=15min
+2026-06-29 01:22:23  INFO          1495494       Pediatric and Low vision        REG   Non-Dilated     dur=5min
+2026-06-29 01:22:23  INFO          1438640       Pediatric and Low vision        REG   Non-Dilated     dur=2min
+2026-06-29 01:22:23  INFO          1193728       General                         MRE   Dilated         dur=40min
+2026-06-29 01:22:23  INFO          WALK-010      Pediatric and Low vision        REG   Non-Dilated     dur=4min
+2026-06-29 01:22:23  INFO          1010482       Cornea                          MRE   Procedure       dur=15min
+2026-06-29 01:22:23  INFO          1437428       Pediatric and Low vision        MRE   Procedure       dur=15min
+2026-06-29 01:22:23  INFO          1451976       Cornea                          REG   Dilated         dur=24min
+2026-06-29 01:22:23  INFO          1454849       Cornea                          MRE   Dilated         dur=40min
+2026-06-29 01:22:23  INFO          1019355       General                         MRE   Procedure       dur=15min
+2026-06-29 01:22:23  INFO          1306783       Glaucoma                        MRE   Procedure       dur=15min
+2026-06-29 01:22:23  INFO          1511134       Pediatric and Low vision        REG   Dilated         dur=27min
+2026-06-29 01:22:23  INFO          1548742       Retina                          REG   Dilated         dur=34min
+2026-06-29 01:22:23  INFO          1436776       Pediatric and Low vision        REG   Non-Dilated     dur=12min
+2026-06-29 01:22:23  INFO          1460152       Glaucoma                        REG   Non-Dilated     dur=14min
+2026-06-29 01:22:23  INFO          1248553       Pediatric and Low vision        MRE   Procedure       dur=15min
+2026-06-29 01:22:23  INFO          1419260       General                         MRE   Procedure       dur=15min
+2026-06-29 01:22:23  INFO          1432896       Retina                          REG   Non-Dilated     dur=4min
+2026-06-29 01:22:23  INFO          1443131       Retina                          REG   Non-Dilated     dur=7min
+2026-06-29 01:22:23  INFO          1445329       Pediatric and Low vision        MRE   Non-Dilated     dur=2min
+2026-06-29 01:22:23  INFO          1204880       General                         MRE   Procedure       dur=15min
+2026-06-29 01:22:23  INFO          1537078       Cornea                          REG   Non-Dilated     dur=17min
+2026-06-29 01:22:23  INFO          1368076       Pediatric and Low vision        SRE   Non-Dilated     dur=4min
+2026-06-29 01:22:23  INFO          1564264       Retina                          SRE   Dilated         dur=42min
+2026-06-29 01:22:23  INFO          1437084       Pediatric and Low vision        MRE   Dilated         dur=38min
+2026-06-29 01:22:23  INFO          1520447       General                         REG   Non-Dilated     dur=3min
+2026-06-29 01:22:23  INFO          1260715       General                         MRE   Procedure       dur=15min
+2026-06-29 01:22:23  INFO          1449576       General                         MRE   Procedure       dur=15min
+2026-06-29 01:22:23  INFO          1487970       Retina                          REG   Non-Dilated     dur=7min
+2026-06-29 01:22:23  INFO          1155006       Pediatric and Low vision        MRE   Non-Dilated     dur=1min
+2026-06-29 01:22:23  INFO          1424263       Cornea                          MRE   Dilated         dur=32min
+2026-06-29 01:22:23  INFO          1397430       General                         MRE   Procedure       dur=15min
+2026-06-29 01:22:23  INFO          WALK-012      Glaucoma                        REG   Dilated         dur=38min
+2026-06-29 01:22:23  INFO          1548790       Glaucoma                        SRE   Procedure       dur=15min
+2026-06-29 01:22:23  INFO          1266965       Glaucoma                        SRE   Procedure       dur=15min
+2026-06-29 01:22:23  INFO          1135337       General                         MRE   Non-Dilated     dur=16min
+2026-06-29 01:22:23  INFO          1553188       Glaucoma                        REG   Dilated         dur=41min
+2026-06-29 01:22:23  INFO          1097768       Glaucoma                        MRE   Dilated         dur=42min
+2026-06-29 01:22:23  INFO          1348039       Pediatric and Low vision        MRE   Non-Dilated     dur=3min
+2026-06-29 01:22:23  INFO          1486363       Cornea                          REG   Dilated         dur=34min
+2026-06-29 01:22:23  INFO          1180773       Cornea                          MRE   Procedure       dur=15min
+2026-06-29 01:22:23  INFO          1441487       Glaucoma                        REG   Non-Dilated     dur=2min
+2026-06-29 01:22:23  INFO          1469478       Glaucoma                        MRE   Non-Dilated     dur=13min
+2026-06-29 01:22:23  INFO          1477376       Glaucoma                        REG   Non-Dilated     dur=8min
+2026-06-29 01:22:23  INFO          1196842       Cornea                          MRE   Dilated         dur=43min
+2026-06-29 01:22:23  INFO          1520241       General                         REG   Non-Dilated     dur=1min
+2026-06-29 01:22:23  INFO          1086603       General                         MRE   Non-Dilated     dur=18min
+2026-06-29 01:22:23  INFO          1118772       Pediatric and Low vision        MRE   Non-Dilated     dur=10min
+2026-06-29 01:22:23  INFO          1525165       Pediatric and Low vision        REG   Non-Dilated     dur=6min
+2026-06-29 01:22:23  INFO          1343016       General                         MRE   Non-Dilated     dur=12min
+2026-06-29 01:22:23  INFO          1427140       Cornea                          MRE   Non-Dilated     dur=3min
+2026-06-29 01:22:23  INFO          1008118       General                         MRE   Procedure       dur=15min
+2026-06-29 01:22:23  INFO          1447209       General                         REG   Dilated         dur=33min
+2026-06-29 01:22:23  INFO          1499030       Cornea                          REG   Non-Dilated     dur=4min
+2026-06-29 01:22:23  INFO          1535149       General                         REG   Non-Dilated     dur=4min
+2026-06-29 01:22:23  INFO          1564541       Glaucoma                        SRE   Non-Dilated     dur=9min
+2026-06-29 01:22:23  INFO          1522833       Cornea                          MRE   Procedure       dur=15min
+2026-06-29 01:22:23  INFO          1080690       Pediatric and Low vision        MRE   Non-Dilated     dur=12min
+2026-06-29 01:22:23  INFO          1458618       Glaucoma                        MRE   Non-Dilated     dur=7min
+2026-06-29 01:22:23  INFO          1134605       Pediatric and Low vision        MRE   Dilated         dur=43min
+2026-06-29 01:22:23  INFO          1445037       Pediatric and Low vision        REG   Dilated         dur=50min
+2026-06-29 01:22:23  INFO          1349023       Glaucoma                        MRE   Non-Dilated     dur=2min
+2026-06-29 01:22:23  INFO          1473374       General                         REG   Non-Dilated     dur=3min
+2026-06-29 01:22:23  INFO          1449856       Glaucoma                        MRE   Non-Dilated     dur=2min
+2026-06-29 01:22:23  INFO          1516897       Glaucoma                        MRE   Non-Dilated     dur=7min
+2026-06-29 01:22:23  INFO          1560122       Cornea                          MRE   Non-Dilated     dur=7min
+2026-06-29 01:22:23  INFO          1072174       Pediatric and Low vision        MRE   Dilated         dur=40min
+2026-06-29 01:22:23  INFO          1253382       Pediatric and Low vision        MRE   Procedure       dur=15min
+2026-06-29 01:22:23  INFO          P870204       Glaucoma                        MRE   Non-Dilated     dur=8min
+2026-06-29 01:22:23  INFO          1546314       Cornea                          REG   Non-Dilated     dur=4min
+2026-06-29 01:22:23  INFO          1420315       Glaucoma                        SRE   Non-Dilated     dur=7min
+2026-06-29 01:22:23  INFO          1549461       Cornea                          MRE   Non-Dilated     dur=16min
+2026-06-29 01:22:23  INFO          1474541       Cornea                          MRE   Non-Dilated     dur=6min
+2026-06-29 01:22:23  INFO          1453531       Glaucoma                        SRE   Non-Dilated     dur=11min
+2026-06-29 01:22:23  INFO          1468263       Retina                          REG   Dilated         dur=21min
+2026-06-29 01:22:23  INFO          1498643       General                         REG   Dilated         dur=46min
+2026-06-29 01:22:23  INFO          1507442       Glaucoma                        REG   Non-Dilated     dur=1min
+2026-06-29 01:22:23  INFO          1513601       Glaucoma                        SRE   Dilated         dur=29min
+2026-06-29 01:22:23  INFO          1433763       Glaucoma                        REG   Dilated         dur=43min
+2026-06-29 01:22:23  INFO          1499567       Glaucoma                        SRE   Dilated         dur=30min
+2026-06-29 01:22:23  INFO          1460249       General                         REG   Non-Dilated     dur=3min
+2026-06-29 01:22:23  INFO          1554798       General                         SRE   Procedure       dur=15min
+2026-06-29 01:22:23  INFO          1512712       Glaucoma                        MRE   Non-Dilated     dur=2min
+2026-06-29 01:22:23  INFO          1452270       Pediatric and Low vision        SRE   Dilated         dur=44min
+2026-06-29 01:22:23  INFO          1403916       Pediatric and Low vision        MRE   Non-Dilated     dur=6min
+2026-06-29 01:22:23  INFO          1093410       General                         MRE   Procedure       dur=15min
+2026-06-29 01:22:23  INFO          1457129       Pediatric and Low vision        MRE   Non-Dilated     dur=5min
+2026-06-29 01:22:23  INFO          1325504       Cornea                          MRE   Non-Dilated     dur=8min
+2026-06-29 01:22:23  INFO          1122293       Glaucoma                        MRE   Procedure       dur=15min
+2026-06-29 01:22:23  INFO          1464492       Pediatric and Low vision        SRE   Dilated         dur=26min
+2026-06-29 01:22:23  INFO          1393336       Cornea                          MRE   Non-Dilated     dur=1min
+2026-06-29 01:22:23  INFO          1507168       Retina                          REG   Non-Dilated     dur=4min
+2026-06-29 01:22:23  INFO          1213328       Cornea                          MRE   Non-Dilated     dur=6min
+2026-06-29 01:22:23  INFO          1415690       Pediatric and Low vision        MRE   Non-Dilated     dur=11min
+2026-06-29 01:22:23  INFO          1433485       General                         MRE   Procedure       dur=15min
+2026-06-29 01:22:23  INFO          1541218       Pediatric and Low vision        REG   Dilated         dur=33min
+2026-06-29 01:22:23  INFO          1236927       Cornea                          MRE   Procedure       dur=15min
+2026-06-29 01:22:23  INFO          1533819       Cornea                          SRE   Dilated         dur=43min
+2026-06-29 01:22:23  INFO          1357120       Pediatric and Low vision        MRE   Non-Dilated     dur=7min
+2026-06-29 01:22:23  INFO          1533230       Glaucoma                        REG   Dilated         dur=31min
+2026-06-29 01:22:23  INFO          1534201       Glaucoma                        REG   Non-Dilated     dur=4min
+2026-06-29 01:22:23  INFO          1542070       Pediatric and Low vision        SRE   Procedure       dur=15min
+2026-06-29 01:22:23  INFO      ====================================================================
+2026-06-29 01:23:51  INFO      Data loaded successfully
