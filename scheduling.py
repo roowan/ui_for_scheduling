@@ -252,22 +252,30 @@ def load_patient_lookup():
 
 # Per-flow global median OPD slot durations (from EHR n=225,961 + capacity sanity)
 # Non-Dilated : CONS_WORKUP_TIME median ~4 min — quick review, no dilation
-# Dilated     : CONS_WORKUP_TIME median ~38 min — includes dilation wait in consult room
+# Dilated     : Split into TWO bookings:
+#                 Phase 1 (initial check): 4 min — doctor checks, instils drops
+#                 [gap of DILATION_WAIT_MIN — patient waits in lobby for drops to work]
+#                 Phase 2 (fundus exam):   10 min — doctor does post-dilation fundus exam
+#               Old EHR CONS_WORKUP_TIME ~38 min was the combined total; now split.
 # Procedure   : CONS_WORKUP_TIME ~76 min but that covers the whole procedure suite stay
 #               (drops + procedure + recovery).  The OPD consultation slot is only the
 #               pre-procedure check; cap at 15 min so the doctor's OPD schedule fits
 #               ~350 patients/day alongside OT blocks.
 GLOBAL_CONSULT_MEDIAN = {
     "Non-Dilated": 4,
-    "Dilated":     38,
+    "Dilated":     4,    # Phase 1 initial check only; Phase 2 exam = DILATION_EXAM_MIN
     "Procedure":   12,   # OPD pre-procedure check only; procedure itself is in OT
 }
 # Hard cap per flow — guards against outlier personal averages inflating slot sizes
 CONSULT_SLOT_CAP = {
     "Non-Dilated": 30,
-    "Dilated":     60,
+    "Dilated":     6,    # initial check capped at 6 min; EHR avg ~38 was full visit
     "Procedure":   15,   # even if a patient's avg is 150 min, OPD slot capped at 15
 }
+
+# Dilation two-slot parameters
+DILATION_WAIT_MIN = 28   # biological minimum for drops to dilate pupils fully
+DILATION_EXAM_MIN = 10   # post-dilation fundus exam duration
 
 def get_consult_slot(patient_row, flow: str) -> int:
     """Return the OPD consultation slot (minutes) for this patient's flow type today."""
@@ -367,6 +375,54 @@ def find_gaps(opd_periods, sorted_bookings, duration_needed):
             t += SCAN_STEP
     return candidates
 
+def find_dilation_pairs(slot1_periods, slot2_periods, sorted_bookings,
+                        initial_dur, wait_min, exam_dur):
+    """
+    Find (check_start, exam_start) minute pairs for split dilated booking.
+    slot1_periods: OPD periods eligible for the initial check (may be walk-in restricted).
+    slot2_periods: all OPD periods eligible for the exam (patient already inside).
+    Returns at most one pair per slot1 candidate (first valid exam slot wins).
+    """
+    pairs = []
+    slot1_cands = find_gaps(slot1_periods, sorted_bookings, initial_dur)
+    for t1 in slot1_cands:
+        earliest_t2 = t1 + initial_dur + wait_min
+        rem = earliest_t2 % SCAN_STEP
+        if rem: earliest_t2 += SCAN_STEP - rem
+        # Treat slot1 as occupied so exam doesn't overlap with it
+        temp_bk = sorted(sorted_bookings + [
+            {"start_minute": t1, "end_minute": t1 + initial_dur, "duration_minutes": initial_dur}
+        ], key=lambda b: b["start_minute"])
+        found = False
+        for (ps, pe) in slot2_periods:
+            if pe <= earliest_t2:
+                continue
+            t = max(ps, earliest_t2)
+            rem2 = t % SCAN_STEP
+            if rem2: t += SCAN_STEP - rem2
+            period_bk = [b for b in temp_bk if b["start_minute"] < pe and b["end_minute"] > ps]
+            while t + exam_dur <= pe:
+                end_t = t + exam_dur
+                overlap = False
+                for b in period_bk:
+                    if t < b["end_minute"] and b["start_minute"] < end_t:
+                        overlap = True
+                        t = b["end_minute"]
+                        rem3 = t % SCAN_STEP
+                        if rem3: t += SCAN_STEP - rem3
+                        break
+                if overlap: continue
+                next_start = next((b["start_minute"] for b in period_bk
+                                   if b["start_minute"] >= end_t), None)
+                if next_start is not None and end_t + OVERLAP_BUFFER > next_start:
+                    t += SCAN_STEP; continue
+                pairs.append((t1, t))
+                found = True
+                break
+            if found: break
+    return pairs
+
+
 def score_slot_v2(start_min, duration_min, doc_name, day, flow,
                   bookings, visit_cat, doc_slots):
     broad     = get_broad_idx_from_minute(start_min)
@@ -448,25 +504,52 @@ def rank_slots_v2(spec, day, flow, bookings, pred_duration, top_n=3, visit_cat="
         doc_bk = sorted([b for b in bookings if b["doctor"] == doc_name and b["day"] == day],
                         key=lambda b: b["start_minute"])
 
-        for sm in find_gaps(search_periods, doc_bk, duration):
-            broad = get_broad_idx_from_minute(sm)
+        if flow.strip() == "Dilated":
+            # Two-slot booking: initial check + post-dilation fundus exam
+            # slot1 restricted to search_periods; slot2 can use any OPD period
+            pairs = find_dilation_pairs(search_periods, all_opd, doc_bk,
+                                        duration, DILATION_WAIT_MIN, DILATION_EXAM_MIN)
+            for (t1, t2) in pairs:
+                broad = get_broad_idx_from_minute(t1)
+                if is_walkin and period_total_opd[broad] > 0:
+                    if (period_booked_reg[broad] + duration) / period_total_opd[broad] > WALKIN_PERIOD_CAP:
+                        continue
+                score, bd = score_slot_v2(t1, duration, doc_name, day, flow,
+                                          bookings, visit_cat, doc_slots)
+                cong = (min(1.0, period_booked_all[broad] / period_total_opd[broad])
+                        if period_total_opd[broad] > 0 else 0.0)
+                bd["congestion"] = cong
+                bd["is_walkin"]  = is_walkin
+                score += 0.15 * cong
+                candidates.append({
+                    "doc": doc_name, "start_minute": t1,
+                    "duration_minutes": duration, "score": score,
+                    "breakdown": bd, "clock_range": clock_range(t1, duration),
+                    "exam_start_minute": t2,
+                    "exam_duration_minutes": DILATION_EXAM_MIN,
+                    "exam_clock_range": clock_range(t2, DILATION_EXAM_MIN),
+                    "is_dilation_pair": True,
+                })
+        else:
+            for sm in find_gaps(search_periods, doc_bk, duration):
+                broad = get_broad_idx_from_minute(sm)
 
-            # Capacity guard for REG: don't let a single walk-in push a period
-            # past WALKIN_PERIOD_CAP of total OPD minutes
-            if is_walkin and period_total_opd[broad] > 0:
-                if (period_booked_reg[broad] + duration) / period_total_opd[broad] > WALKIN_PERIOD_CAP:
-                    continue
+                # Capacity guard for REG: don't let a single walk-in push a period
+                # past WALKIN_PERIOD_CAP of total OPD minutes
+                if is_walkin and period_total_opd[broad] > 0:
+                    if (period_booked_reg[broad] + duration) / period_total_opd[broad] > WALKIN_PERIOD_CAP:
+                        continue
 
-            score, bd = score_slot_v2(sm, duration, doc_name, day, flow,
-                                      bookings, visit_cat, doc_slots)
-            cong = (min(1.0, period_booked_all[broad] / period_total_opd[broad])
-                    if period_total_opd[broad] > 0 else 0.0)
-            bd["congestion"] = cong
-            bd["is_walkin"]  = is_walkin
-            score += 0.15 * cong
-            candidates.append({"doc": doc_name, "start_minute": sm,
-                                "duration_minutes": duration, "score": score,
-                                "breakdown": bd, "clock_range": clock_range(sm, duration)})
+                score, bd = score_slot_v2(sm, duration, doc_name, day, flow,
+                                          bookings, visit_cat, doc_slots)
+                cong = (min(1.0, period_booked_all[broad] / period_total_opd[broad])
+                        if period_total_opd[broad] > 0 else 0.0)
+                bd["congestion"] = cong
+                bd["is_walkin"]  = is_walkin
+                score += 0.15 * cong
+                candidates.append({"doc": doc_name, "start_minute": sm,
+                                    "duration_minutes": duration, "score": score,
+                                    "breakdown": bd, "clock_range": clock_range(sm, duration)})
 
     candidates.sort(key=lambda c: (c["score"], c["start_minute"], c["doc"]))
     return candidates[:top_n] if top_n else candidates
@@ -480,12 +563,17 @@ def compute_today_metrics(bookings):
                     for spec in SPECIALTIES
                     for ds in SCHEDULE.get(spec,{}).get(today,[]))
     booked_min = sum(b["duration_minutes"] for b in today_bk)
-    return {"day":today,"booked_ct":len(today_bk),"booked_min":booked_min,
+    # Count unique patients (not booking records — dilated has 2 records per patient)
+    unique_patients = len({b["mrdno"] for b in today_bk})
+    pts_per_hour = round(unique_patients / (DAY_SPAN_MIN / 60), 1) if DAY_SPAN_MIN else 0
+    return {"day":today,"booked_ct":unique_patients,"booked_min":booked_min,
             "total_min":total_min,
             "pct":round(booked_min/total_min*100,1) if total_min else 0,
+            "pts_per_hour": pts_per_hour,
             "by_spec":{sp:sum(b["duration_minutes"] for b in today_bk if b["specialty"]==sp)
                        for sp in SPECIALTIES},
-            "by_flow":{ft:sum(1 for b in today_bk if b["flow"]==ft) for ft in FLOW_TYPES}}
+            "by_flow":{ft:sum(1 for b in today_bk if b["flow"]==ft and b.get("dilation_phase")!="exam")
+                       for ft in FLOW_TYPES}}
 
 def compute_spec_day_pct(bookings, day, spec):
     sched = SCHEDULE.get(spec,{}).get(day,[])
@@ -718,10 +806,10 @@ class OPDSchedulerApp(tk.Tk):
         self._tick_statusbar()
 
     def _tick_statusbar(self):
-        total = len(self.bookings)
+        total = len({b["mrdno"] for b in self.bookings})
         today = self._today_day()
-        ct = sum(1 for b in self.bookings if b["day"]==today)
-        self.lbl_sb.config(text=f"Total bookings: {total}   ·   Today ({today}): {ct}")
+        ct = len({b["mrdno"] for b in self.bookings if b["day"]==today})
+        self.lbl_sb.config(text=f"Total patients: {total}   ·   Today ({today}): {ct}")
         self.lbl_sb_save.config(text=f"Last save: {self._last_save.strftime('%H:%M:%S')}")
         self.after(5000, self._tick_statusbar)
 
@@ -795,10 +883,11 @@ class OPDSchedulerApp(tk.Tk):
             tk.Label(i, text=title, font=self.fnt_small, bg=CARD, fg=TEXT_DIM).pack(anchor="w")
             tk.Label(i, text=str(val), font=self.fnt_num,  bg=CARD, fg=col).pack(anchor="w")
             tk.Label(i, text=sub,      font=self.fnt_small, bg=CARD, fg=TEXT_DIM).pack(anchor="w")
-        kpi(kpi_row,"BOOKED TODAY",    m["booked_ct"],  f"Day: {day}",                 ACCENT)
-        kpi(kpi_row,"BOOKED MIN TODAY",f"{m['booked_min']}m", f"of {m['total_min']}m OPD capacity", GREEN)
-        kpi(kpi_row,"UTILIZATION",     f"{m['pct']}%",  "by minutes filled",           YELLOW)
-        kpi(kpi_row,"ALL BOOKINGS",    len(self.bookings),"across all days",            PURPLE)
+        all_unique = len({b["mrdno"] for b in self.bookings})
+        kpi(kpi_row,"PATIENTS TODAY",  m["booked_ct"],  f"Day: {day}",                 ACCENT)
+        kpi(kpi_row,"PATIENTS/HOUR",   f"{m['pts_per_hour']}", "across 9h OPD day",   GREEN)
+        kpi(kpi_row,"UTILIZATION",     f"{m['pct']}%",  "booked min / OPD capacity",  YELLOW)
+        kpi(kpi_row,"ALL PATIENTS",    all_unique,      "unique across all days",      PURPLE)
 
         # Specialty bars for today
         self._section(self._dash_body, f"SPECIALTY UTILIZATION — {day.upper()}", ACCENT2)
@@ -1082,10 +1171,19 @@ class OPDSchedulerApp(tk.Tk):
                 lbl.pack(side="left"); lbl.bind("<Enter>",_er); lbl.bind("<Leave>",_lr)
             def _cancel(bid=b.get("id"), bdata=b):
                 tw2=clock_range(bdata.get("start_minute",0),bdata.get("duration_minutes",15))
-                if messagebox.askyesno("Cancel",f"Cancel {bdata['mrdno']} on {bdata['day']} {tw2}?"):
-                    self.bookings=[x for x in self.bookings if x.get("id")!=bid]
+                pair_id = bdata.get("dilation_pair_id")
+                if pair_id:
+                    msg2 = f"Cancel BOTH dilation slots for {bdata['mrdno']} on {bdata['day']}?"
+                else:
+                    msg2 = f"Cancel {bdata['mrdno']} on {bdata['day']} {tw2}?"
+                if messagebox.askyesno("Cancel", msg2):
+                    if pair_id:
+                        self.bookings=[x for x in self.bookings if x.get("dilation_pair_id")!=pair_id]
+                        log.info("Cancelled dilation pair pair_id=%s",pair_id)
+                    else:
+                        self.bookings=[x for x in self.bookings if x.get("id")!=bid]
+                        log.info("Cancelled booking id=%s",bid)
                     save_bookings(self.bookings); self._last_save=datetime.now()
-                    log.info("Cancelled booking id=%s",bid)
                     self.toast.show(f"Cancelled: {bdata['mrdno']} on {bdata['day']}","warn")
                     self._refresh_appointments()
             cb=tk.Label(row,text=" Cancel ",font=self.fnt_small,bg="#3a1a1a",fg=RED,
@@ -1232,12 +1330,9 @@ class OPDSchedulerApp(tk.Tk):
         self.patient_data["pred_min"] = pred_min
 
         # Consultation slot = patient's personal avg for TODAY's specific flow type
-        flow_key = p["flow"].strip().replace("-","").replace(" ","_").lower()
-        raw_consult = p.get(f"avg_consult_{flow_key}")
-        if raw_consult is not None and raw_consult > 0:
-            consult_min = max(1, round(raw_consult))
-        else:
-            consult_min = GLOBAL_CONSULT_MEDIAN.get(p["flow"].strip(), 10)
+        # Must go through get_consult_slot so CONSULT_SLOT_CAP is applied
+        # (Dilated EHR avg is the old 38-44 min full visit; cap clamps it to 6 min initial check)
+        consult_min = get_consult_slot(p, p["flow"])
         self.patient_data["consult_min"] = consult_min
 
         # Info row: stay vs consult
@@ -1274,8 +1369,14 @@ class OPDSchedulerApp(tk.Tk):
             rec_bg = ZONE_COLOR.get(zone,"#2a2300") if is_pref else "#3a1a1a"
             rec = tk.Frame(rec_o, bg=rec_bg, pady=9); rec.pack(fill="x")
             li = tk.Frame(rec, bg=rec_bg); li.pack(side="left", padx=14)
-            tk.Label(li, text=f"⚡  Recommended:  {best['doc']}   ·   {best['clock_range']}  ({best['duration_minutes']} min)",
-                     font=self.fnt_body, bg=rec_bg, fg=zc).pack(anchor="w")
+            if best.get("is_dilation_pair"):
+                slot_txt = (f"⚡  Recommended:  {best['doc']}   ·   "
+                            f"Check {best['clock_range']} ({best['duration_minutes']} min)  "
+                            f"→ wait {DILATION_WAIT_MIN} min →  "
+                            f"Exam {best['exam_clock_range']} ({best['exam_duration_minutes']} min)")
+            else:
+                slot_txt = f"⚡  Recommended:  {best['doc']}   ·   {best['clock_range']}  ({best['duration_minutes']} min)"
+            tk.Label(li, text=slot_txt, font=self.fnt_body, bg=rec_bg, fg=zc).pack(anchor="w")
             tk.Label(li, text=(f"  {plan_b_txt}   ·   "
                                f"Doc load: {bd['doc_booked_min']}/{bd['doc_capacity_min']} min   ·   "
                                f"Score: {best['score']:.3f}"),
@@ -1283,7 +1384,9 @@ class OPDSchedulerApp(tk.Tk):
             bk = tk.Label(rec, text="Book this →", font=self.fnt_small,
                           bg=rec_bg, fg=ACCENT, cursor="hand2")
             bk.pack(side="right", padx=14)
-            bk.bind("<Button-1>", lambda e, c=best: self._book_slot(c["doc"], c["start_minute"], c["duration_minutes"]))
+            bk.bind("<Button-1>", lambda e, c=best: self._book_slot(
+                c["doc"], c["start_minute"], c["duration_minutes"],
+                c.get("exam_start_minute"), c.get("exam_duration_minutes")))
             bk.bind("<Enter>", lambda e: bk.config(fg=TEXT))
             bk.bind("<Leave>", lambda e: bk.config(fg=ACCENT))
 
@@ -1350,6 +1453,7 @@ class OPDSchedulerApp(tk.Tk):
             tk.Label(self.content, text="No schedule for this specialty/day.",
                      font=self.fnt_body, bg=BG, fg=TEXT_DIM).pack(padx=16); return
 
+        spec_prefix_tl = spec.strip().split()[0][:3].upper()
         rank_map = {(r["doc"],r["start_minute"]): i for i,r in enumerate(self._ranked)}
 
         outer = tk.Frame(self.content, bg=BORDER2, padx=1, pady=1)
@@ -1366,7 +1470,7 @@ class OPDSchedulerApp(tk.Tk):
         now_min = datetime.now().hour*60 + datetime.now().minute
 
         for di, doc_slots in enumerate(sched):
-            doc_name  = f"Doc {di+1}"
+            doc_name  = f"{spec_prefix_tl}-Doc{di+1}"
             doc_bk    = [b for b in self.bookings if b["doctor"]==doc_name and b["day"]==day]
             total_opd = total_opd_minutes(doc_slots)
             booked_m  = sum(b["duration_minutes"] for b in doc_bk)
@@ -1470,7 +1574,9 @@ class OPDSchedulerApp(tk.Tk):
                 x1 = xpos(c["start_minute"]); x2 = xpos(c["start_minute"]+c["duration_minutes"])
                 canvas.tag_bind(canvas.create_rectangle(x1, 0, x2, H, fill="", outline=""),
                                 "<Button-1>",
-                                lambda e, cc=c: self._book_slot(cc["doc"],cc["start_minute"],cc["duration_minutes"]))
+                                lambda e, cc=c: self._book_slot(
+                                    cc["doc"], cc["start_minute"], cc["duration_minutes"],
+                                    cc.get("exam_start_minute"), cc.get("exam_duration_minutes")))
                 canvas.tag_bind(canvas.create_rectangle(x1, 0, x2, H, fill="", outline=""),
                                 "<Enter>",
                                 lambda e, tl=canvas, a=x1, b_=x2:
@@ -1506,11 +1612,12 @@ class OPDSchedulerApp(tk.Tk):
              f"Zone     : {zone}\nScore    : {best['score']:.3f}\n\n"
              f"Why:\n{why}\n\nBook it now?")
         if messagebox.askyesno("⚡ Recommended Slot", msg):
-            self._book_slot(best["doc"], best["start_minute"], best["duration_minutes"])
+            self._book_slot(best["doc"], best["start_minute"], best["duration_minutes"],
+                            best.get("exam_start_minute"), best.get("exam_duration_minutes"))
         else:
             self._render_patient()
 
-    def _book_slot(self, doc, start_min, duration_min):
+    def _book_slot(self, doc, start_min, duration_min, exam_start=None, exam_dur=None):
         p   = self.patient_data; day = self.selected_day.get()
         existing = is_already_booked(self.bookings, p["mrdno"], day)
         if existing:
@@ -1521,23 +1628,58 @@ class OPDSchedulerApp(tk.Tk):
             tw=clock_range(conflict.get("start_minute",0),conflict.get("duration_minutes",15))
             self.toast.show(f"Slot conflicts with existing booking at {tw}","error"); return
         tw = clock_range(start_min, duration_min)
-        msg=(f"Confirm Booking\n\n"
-             f"MRDNO     : {p['mrdno']}\n"
-             f"Patient   : {p['gender']}  ·  {p['age_cat']}\n"
-             f"Specialty : {p['specialty']}\nFlow      : {p['flow']}\n"
-             f"Doctor    : {doc}\nDay       : {day}\n"
-             f"Time      : {tw}  ({duration_min} min)\n\nConfirm?")
+        is_pair = (exam_start is not None and exam_dur is not None)
+        if is_pair:
+            exam_tw = clock_range(exam_start, exam_dur)
+            msg=(f"Confirm Dilated Booking (2 slots)\n\n"
+                 f"MRDNO     : {p['mrdno']}\n"
+                 f"Patient   : {p['gender']}  ·  {p['age_cat']}\n"
+                 f"Specialty : {p['specialty']}\nFlow      : Dilated\n"
+                 f"Doctor    : {doc}\nDay       : {day}\n\n"
+                 f"Slot 1 (check)  : {tw}  ({duration_min} min)\n"
+                 f"  ↓ wait {DILATION_WAIT_MIN} min for drops\n"
+                 f"Slot 2 (exam)   : {exam_tw}  ({exam_dur} min)\n\nConfirm both?")
+        else:
+            msg=(f"Confirm Booking\n\n"
+                 f"MRDNO     : {p['mrdno']}\n"
+                 f"Patient   : {p['gender']}  ·  {p['age_cat']}\n"
+                 f"Specialty : {p['specialty']}\nFlow      : {p['flow']}\n"
+                 f"Doctor    : {doc}\nDay       : {day}\n"
+                 f"Time      : {tw}  ({duration_min} min)\n\nConfirm?")
         if messagebox.askyesno("Confirm Booking", msg):
-            booking={"id":f"{p['mrdno']}_{day}_{start_min}_{doc}".replace(" ","_"),
-                     "mrdno":p["mrdno"],"gender":p["gender"],"age_cat":p["age_cat"],
-                     "specialty":p["specialty"],"visit_cat":p["visit_cat"],"flow":p["flow"],
-                     "doctor":doc,"day":day,"start_minute":start_min,
-                     "duration_minutes":duration_min,"end_minute":start_min+duration_min,
-                     "pred_min":round(duration_min,1),"booked_at":datetime.now().isoformat()}
-            self.bookings.append(booking)
+            now_iso = datetime.now().isoformat()
+            base_id = f"{p['mrdno']}_{day}_{start_min}_{doc}".replace(" ","_")
+            if is_pair:
+                pair_id = f"DIL_{base_id}"
+                b_check = {"id": base_id,
+                           "mrdno":p["mrdno"],"gender":p["gender"],"age_cat":p["age_cat"],
+                           "specialty":p["specialty"],"visit_cat":p["visit_cat"],"flow":p["flow"],
+                           "doctor":doc,"day":day,"start_minute":start_min,
+                           "duration_minutes":duration_min,"end_minute":start_min+duration_min,
+                           "pred_min":round(duration_min,1),"booked_at":now_iso,
+                           "dilation_pair_id":pair_id,"dilation_phase":"check"}
+                b_exam  = {"id": f"{base_id}_exam",
+                           "mrdno":p["mrdno"],"gender":p["gender"],"age_cat":p["age_cat"],
+                           "specialty":p["specialty"],"visit_cat":p["visit_cat"],"flow":p["flow"],
+                           "doctor":doc,"day":day,"start_minute":exam_start,
+                           "duration_minutes":exam_dur,"end_minute":exam_start+exam_dur,
+                           "pred_min":round(exam_dur,1),"booked_at":now_iso,
+                           "dilation_pair_id":pair_id,"dilation_phase":"exam"}
+                self.bookings.extend([b_check, b_exam])
+                log.info("Booked dilated pair mrdno=%s doc=%s day=%s check=%s exam=%s",
+                         p["mrdno"],doc,day,tw,exam_tw)
+                self.toast.show(f"Booked (dilated): {p['mrdno']}  →  {doc}  |  {tw} + {exam_tw}","success")
+            else:
+                booking={"id":base_id,
+                         "mrdno":p["mrdno"],"gender":p["gender"],"age_cat":p["age_cat"],
+                         "specialty":p["specialty"],"visit_cat":p["visit_cat"],"flow":p["flow"],
+                         "doctor":doc,"day":day,"start_minute":start_min,
+                         "duration_minutes":duration_min,"end_minute":start_min+duration_min,
+                         "pred_min":round(duration_min,1),"booked_at":now_iso}
+                self.bookings.append(booking)
+                log.info("Booked mrdno=%s doc=%s day=%s time=%s",p["mrdno"],doc,day,tw)
+                self.toast.show(f"Booked: {p['mrdno']}  →  {doc}  |  {day}  {tw}","success")
             save_bookings(self.bookings); self._last_save=datetime.now()
-            log.info("Booked mrdno=%s doc=%s day=%s time=%s",p["mrdno"],doc,day,tw)
-            self.toast.show(f"Booked: {p['mrdno']}  →  {doc}  |  {day}  {tw}","success")
             self._render_patient()
 
     # ── Manual entry ──────────────────────────────────────────────────
